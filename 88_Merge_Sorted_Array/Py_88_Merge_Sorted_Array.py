@@ -1,5 +1,22 @@
 class Solution(object):
-    def merge(self, nums1, m, nums2, n):
+    def __init__(self):
+        print('New input:\n'
+              'nums1 = [1,2,3,0,0,0]\nm = 3\nnums2 = [2,5,6]\nn = 3\n'
+              'Expected: nums1 = [1, 2, 2, 3, 5, 6]')
+        self.merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3)
+
+        print('New input:\n'
+              'nums1 = [1]\nm = 1\nnums2 = []\nn = 0\n'
+              'Expected: nums1 = [1]')
+        self.merge([1], 1, [], 0)
+
+        print('New input:\n'
+              'nums1 = [0]\nm = 0\nnums2 = [1]\nn = 1\n'
+              'Expected: nums1 = [1]')
+        self.merge([0], 0, [1], 1)
+
+    @staticmethod
+    def merge(nums1, m, nums2, n):
         """
         :type nums1: List[int]
         :type m: int
@@ -9,17 +26,18 @@ class Solution(object):
         """
         temp_nums1 = nums1
 
-        for idx, val in enumerate(temp_nums1):
+        for idx in range(n+m):
             if len(nums2) == 0:
-                if nums1[-1] == 0:
-                    nums1.pop(-1)
                 break
+            else:
+                if temp_nums1[idx] > nums2[0]:
+                    nums1.insert(idx, nums2[0])
+                    nums2.pop(0)
+                elif temp_nums1[idx] == 0:
+                    nums1[idx] = nums2[0]
+                    nums2.pop(0)
+        nums1 = nums1[:m+n]
+        print(f'output: nums1 = {nums1}\n\n')
 
-            if temp_nums1[idx] > nums2[0]:
-                nums1.insert(idx, nums2[0])
-                nums2.pop(0)
-            elif temp_nums1[idx] == 0:
-                nums1[idx] = nums2[0]
-                nums2.pop(0)
-            print("nums1", nums1)
 
+merge_sorted_array = Solution()
