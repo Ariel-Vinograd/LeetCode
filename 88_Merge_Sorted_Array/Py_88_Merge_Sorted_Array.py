@@ -27,7 +27,7 @@ class Solution(object):
         temp_nums1 = nums1
 
         for idx in range(n+m):
-            if len(nums2) == 0:
+            if len(nums2) == 0:  # If nums2 is empty the for loop is not necessary
                 break
             else:
                 if temp_nums1[idx] > nums2[0]:
@@ -36,7 +36,8 @@ class Solution(object):
                 elif temp_nums1[idx] == 0:
                     nums1[idx] = nums2[0]
                     nums2.pop(0)
-        nums1 = nums1[:m+n]
+
+        nums1 = nums1[:m+n]  # For case there is still zeros in the end of nums1
         print(f'output: nums1 = {nums1}\n\n')
 
 
